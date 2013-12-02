@@ -4,16 +4,19 @@
 	<title>iFrame auto-sizer</title>
 	<meta charset="utf-8">
 	<style>
-		*      {-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box}
-		body   {margin:0; padding:0}
-		div    {width:100%; padding:20px}
-		iframe {width:100%; max-width:100%; margin-bottom:20px; border:none}
+		*       {-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box}
+		body    {margin:0; padding:0}
+		div     {width:100%; padding:20px}
+		div.two {padding-top:0}
+		iframe  {width:100%; max-width:100%; margin-bottom:20px; border:none}
 	</style>
 </head>
 <body>
 
-	<div>
+	<div class="one">
 		<iframe src="frame.html" height="160" width="320" data-iframe-autosize="true"></iframe>
+	</div>
+	<div class="two">
 		<iframe src="frame.html" style="height:160px; width:320px" data-iframe-autosize="true"></iframe>
 	</div>
 
@@ -27,7 +30,7 @@
 			var $iframe = $('<iframe />');
 				$iframe.attr('src', 'frame.html');
 				$iframe.attr('data-iframe-autosize', '2:1');
-				$iframe.appendTo( $('div') );
+				$iframe.appendTo( $('div.one') );
 				$iframe.iFrameAutoSize('add');
 		}, 3000);
 		

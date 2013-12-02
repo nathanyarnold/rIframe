@@ -74,10 +74,7 @@
 				// attach to node, so we can use it later
 				$this.attr( dataAttr +'-width',  newWidth  );
 				$this.attr( dataAttr +'-height', newHeight );
-
-				// remove set-width, if present
-				if ( $this.css('width').indexOf('px') > -1 )
-					$this.css('width', '');
+	
 			},
 
 			_bind: function() {
