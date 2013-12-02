@@ -1,7 +1,7 @@
 iFrameAutoSize
 ==============
 
-Iframes can be difficult to display in a responsive design layout, as the height and with is typically set as node attributes.
+Iframes can be difficult to display in a responsive design layout, as the height and width are typically set as node attributes.
 
 This jQuery plugin allows you to override the height/width of an iframe set at the attribute level, and will dynamically resize the iframe to fit it's environment based on whatever responsive-design css rules have been established. 
 
