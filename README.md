@@ -9,10 +9,10 @@ To use, simply add the data attribute <em>data-iframe-autosize</em> to whatever 
 
 <strong>Public methods:</strong>
 
-    <strong>add()</strong> - will add DOM elements to the plugin (automatically runs onDOMReady)
-    <strong>remove()</strong> - will remove DOM elements from the plugin
-    <strong>resize()</strong> - will run the plugin on all DOM elements currently saved in the plugin
-    <strong>setSelector()</strong> - will change which selector is used to gather DOM elements when add() is called onDOMReady
+    add() - will add DOM elements to the plugin (automatically runs onDOMReady)
+    remove() - will remove DOM elements from the plugin
+    resize() - will run the plugin on all DOM elements currently saved in the plugin
+    setSelector() - will change which selector is used to gather DOM elements when add() is called onDOMReady
 
 
 <strong>To do:</strong>
