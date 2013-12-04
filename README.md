@@ -10,29 +10,30 @@ Instructions
 
 At it's easiest, simply add the plugin to your page and the attribute *data-rIframe="true"* to any iframes you would like to be responsive. The plugin will run onDOMReady, look for any iframes with the *data-rIframe* attribute, and then do it's thing. The plugin will calculate the correct width:height ratio of each iframe by looking at the original height and width attributes of that iframe. 
 
-Alternately, you can set the ratio via the *data-rIframe* attribute itself, by specifying the ratio instead of the value "true" (eg. *data-rIframe="16:9"*). 
+Alternately, you can set the ratio for each iframe via the *data-rIframe* attribute itself, by specifying the ratio instead of the value "true" (eg. *data-rIframe="16:9"*). 
 
-Alternately, you can set values for each ratio dimension via their own attribute. Eg *data-rIframe-width="16"* to set the width, *data-rIframe-height="19"* to set the height.
+Alternately, you can set values for each ratio dimension via their own attribute. Eg *data-rIframe-width="16"* to set the width, and *data-rIframe-height="19"* to set the height.
 
-You can add an offset to the ratio (eg. 16:9 plus 50px) either by adding the offset to the *data-rIframe* attribute, or by placing it in a *data-rIframe-offset* attribute. Eg. *data-rIframe="16:9+50)* and *data-rIframe-offset="50"*. The amount off offset can be either a pixel amount (eg. "50") or a % amount (eg. "20%"). You can subtract an offset by using the - sign. Eg. *data-rIframe="16:9-50)* or *data-rIframe-offset="-50"*
+You can add an offset to the ratio (eg. 16:9 plus 50px) either by adding the offset to the *data-rIframe* attribute, or by placing it in a *data-rIframe-offset* attribute. Eg. *data-rIframe="16:9+50* and *data-rIframe-offset="50"*. The amount off offset can either be a pixel amount (eg. "50") or a % amount (eg. "20%"). You can subtract an offset by using the - sign. Eg. *data-rIframe="16:9-50)* or *data-rIframe-offset="-50"*
 
-You can also manually add a DOM element to the plugin at any time by using the **add()** method. Eg. $('iframe.someClass').rIframe('add');
+You can also manually add a DOM element to the plugin at any time by using the **add()** method. Eg. *$('iframe.someClass').rIframe('add')*;
 
-You can remove a DOM element from the plugin by using the **remove()** method. Eg. $('iframe.someClass').rIframe('remove');
+You can remove a DOM element from the plugin by using the **remove()** method. Eg. *$('iframe.someClass').rIframe('remove')*;
 
 Public methods
 --------------
 
-    add() - will add DOM elements to the plugin (automatically runs onDOMReady)
-    remove() - will remove DOM elements from the plugin
-    resize() - will run the plugin on all DOM elements currently saved in the plugin
-    setSelector() - will change which selector is used to gather DOM elements when add() is called onDOMReady
+**add()** - will add DOM elements to the plugin (automatically runs onDOMReady)
+
+**remove()** - will remove DOM elements from the plugin
+
+**resize()** - will run the plugin on all DOM elements currently saved in the plugin
+
+**setSelector()** - will change which selector is used to gather DOM elements when add() is called onDOMReady
 
 
 To do's
 -------
-
-Add a **setRatio()** method, that will allow you to manually set the ratio of an element instead of scraping it from the DOM. 
 
 Add **pause()** and **unpause()** methods, to let you manually stop resizing from happening on resize events.
 
