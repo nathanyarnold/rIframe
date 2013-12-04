@@ -8,7 +8,11 @@ This jQuery plugin allows you to set the desired width:height ratio of an iframe
 To use, simply add the data attribute "data-iframe-autosize" to whatever iframe you would like to be responsive. Alternatively, use the 'setSelector()' method before onDOMReady, to change which objects are gathered automatically by the plugin.
 
 Four public methods are provided:
+
     add() - will add DOM elements to the plugin (automatically runs onDOMReady)
+
     remove() - will remove DOM elements from the plugin
+
     resize() - will run the plugin on all DOM elements currently saved in the plugin
+
     setSelector() - will change which selector is used to gather DOM elements when add() is called onDOMReady
