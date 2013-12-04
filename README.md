@@ -5,7 +5,7 @@ Iframes can be difficult to display in a responsive design layout, as the height
 
 This jQuery plugin allows you to set the desired width:height ratio of an iframe, and then will resize the iframe to maintain that correct ratio. It will run automatically on page load, and then whenever the viewport changes width, or an orientation change event is triggered. You can also trigger it manually via the <strong>resize()</strong> method. 
 
-To use, simply add the data attribute <em>[data-iframe-autosize]</em> to whatever iframe you would like to be responsive. Alternatively, use the <strong>setSelector()</strong> method before onDOMReady, to change which objects are gathered automatically by the plugin. You can also add a dom node (any dom node, it doesn't have to be an iframe) manually at any time using the <strong>add()</strong> method. 
+To use, simply add the data attribute <em>[data-iframe-autosize]</em> to whatever iframe you would like to be responsive. Alternatively, use the <strong>setSelector()</strong> method before onDOMReady, to change which objects are gathered automatically by the plugin. You can also add a DOM node (any node, it doesn't have to be an iFrame) manually at any time using the <strong>add()</strong> method. 
 
 <strong>Public methods:</strong>
 
