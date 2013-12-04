@@ -2,7 +2,7 @@
 (function( $ ){
 
 	var pluginName = 'iFrameAutoSize',
-		dataAttr   = 'data-iframe-autosize',
+		dataAttr   = 'data-rIframe',
 		selector   = 'iframe['+ dataAttr +']',
 
 		objs = $(),			// hold jQuery objects we want to work with

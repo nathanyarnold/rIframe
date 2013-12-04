@@ -14,10 +14,10 @@
 <body>
 
 	<div class="one">
-		<iframe src="frame.html" height="160" width="320" data-iframe-autosize="true"></iframe>
+		<iframe src="frame.html" height="160" width="320" data-rIframe="true"></iframe>
 	</div>
 	<div class="two">
-		<iframe src="frame.html" style="height:160px; width:320px" data-iframe-autosize="true"></iframe>
+		<iframe src="frame.html" style="height:160px; width:320px" data-rIframe="true"></iframe>
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -31,7 +31,7 @@
 		var $iframe = $('<iframe />');
 		window.setTimeout( function() {
 			$iframe.attr('src', 'frame.html');
-			$iframe.attr('data-iframe-autosize', '2:1');
+			$iframe.attr('data-rIframe', '2:1');
 			$iframe.appendTo( $('div.one') );
 			$iframe.iFrameAutoSize('add');
 		}, 2000);
