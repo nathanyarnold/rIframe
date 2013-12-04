@@ -1,13 +1,27 @@
 rIframe
-==============
+=======
 
 iFrames can be difficult to display in a responsive design layout, as the height and width are typically set as node height/width attributes or via CSS. While it's easy to override the width of the iframe by setting it to 100% (or whatever), the height is another matter. 
 
-This jQuery plugin allows you to set the desired width:height ratio of an iframe, and then will resize the iframe to maintain that correct ratio. It will run automatically on page load, and then whenever the viewport changes width, or an orientation change event is triggered. You can also trigger it manually via the <strong>resize()</strong> method. 
+This jQuery plugin allows you to set the desired width:height ratio of an iframe, and then will resize the iframe to maintain that correct ratio. It will run automatically on page load (onDOMReady), and then whenever the viewport changes width, or an orientation change event is triggered. You can also trigger it manually via the **resize()** method. 
 
-To use, simply add the data attribute <em>[data-rIframe]</em> to whatever iframe you would like to be responsive, you can set the property of this to true to have it simply run, or specify a set ratio here (like "16:9") to set it to that ratio. Alternatively, use the <strong>setSelector()</strong> method before onDOMReady, to change which objects are gathered automatically by the plugin. You can also add a DOM node (any node, it doesn't have to be an iFrame) manually at any time using the <strong>add()</strong> method. 
+Instructions
+============
 
-<strong>Public methods:</strong>
+At it's easiest, simply add the plugin to your page and the attribute *data-rIframe="true"* to any iframes you would like to be responsive. The plugin will run onDOMReady, look for any iframes with the *data-rIframe* attribute, and then do it's thing. The plugin will calculate the correct width:height ratio of each iframe by looking at the original height and width attributes of that iframe. 
+
+Alternately, you can set the ratio via the *data-rIframe* attribute itself, by specifying the ratio instead of the value "true" (eg. *data-rIframe="16:9"*). 
+
+Alternately, you can set values for each ratio dimension via their own attribute. Eg *data-rIframe-width="16"* to set the width, *data-rIframe-height="19"* to set the height.
+
+You can add an offset to the ratio (eg. 16:9 plus 50px) either by adding the offset to the *data-rIframe* attribute, or by placing it in a *data-rIframe-offset* attribute. Eg. *data-rIframe="16:9+50)* and *data-rIframe-offset="50"*. The amount off offset can be either a pixel amount (eg. "50") or a % amount (eg. "20%"). You can subtract an offset by using the - sign. Eg. *data-rIframe="16:9-50)* or *data-rIframe-offset="-50"*
+
+You can also manually add a DOM element to the plugin at any time by using the **add()** method. Eg. $('iframe.someClass').rIframe('add');
+
+You can remove a DOM element from the plugin by using the **remove()** method. Eg. $('iframe.someClass').rIframe('remove');
+
+Public methods
+--------------
 
     add() - will add DOM elements to the plugin (automatically runs onDOMReady)
     remove() - will remove DOM elements from the plugin
@@ -15,11 +29,14 @@ To use, simply add the data attribute <em>[data-rIframe]</em> to whatever iframe
     setSelector() - will change which selector is used to gather DOM elements when add() is called onDOMReady
 
 
-<strong>To do:</strong>
+To do's
+-------
 
-Add a <strong>setRatio()</strong> method, that will allow you to manually set the ratio of an element instead of scraping it from the DOM. 
+Add a **setRatio()** method, that will allow you to manually set the ratio of an element instead of scraping it from the DOM. 
 
-Add <strong>pause()</strong> and <strong>unpause()</strong> methods, to let you manually stop resizing from happening on resize events. 
+Add **pause()** and **unpause()** methods, to let you manually stop resizing from happening on resize events.
 
-Find some way to specifically prevent an iframe from being added to the plugin. Maybe the attribute <em> [data-rIframe-exclude]</em> ??
+Add a true/false boolean argument to the **add()** and **remove()** methods to indicate you want the item to resize itself immediately upon being added to the library, or reset to the original height upon being removed. The default will be **add(true)** and **remove(false)**. 
+
+Find some way to specifically prevent an iframe from being added to the plugin. Maybe the attribute *[data-rIframe-exclude]* ??
 

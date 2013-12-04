@@ -79,41 +79,37 @@
 				// declare vars
 				var newHeight=0; newWidth=0, newOffset=0, tmp=[], tmp2=[];
 
-				// set original ratio, by data-attribute
-				if ( $this.attr( dataAttr ).indexOf(':') > -1 ) {
-					// set ratio
-					tmp = $this.attr( dataAttr ).split(':');
-					if ( tmp.length > 1 ) {
-						// width is always first
-						newWidth  = parseInt( tmp[0] );
-						// account for an offset
-						if ( tmp[1].indexOf('+') > -1 ) {
-							// additive offset
-							tmp2 = tmp[1].split('+');
-							newHeight = parseInt( tmp2[0] );
-							newOffset = tmp2[1];
-						} else if (tmp[1].indexOf('-') > -1 ) {
-							// subtractive offset
-							tmp2 = tmp[1].split('-');
-							newHeight = parseInt( tmp2[0] );
-							newOffset = '-'+ tmp2[1];
-						} else {
-							// no offset, simply add height
-							newHeight = parseInt( tmp[1] );
-						};
-					};
-				};
-
-				// alternately, set original width by attr/css
+				// set ratio by looking at original width/height attributes
 				if ( !newWidth && $this.attr('width') )
 					newWidth = parseInt( $this.attr('width')  );  // attr
-				if ( !newWidth && $this.css('width') )
-					newWidth = parseInt( $this.css('width')  );   // css
 				// alternately, set original height by attr/css
 				if ( !newHeight && $this.attr('height') ) // attr
 					newHeight = parseInt( $this.attr('height') ); // attr
-				if ( !newHeight && $this.css('height') )
-					newHeight = parseInt( $this.css('height') );  // css
+
+                // alternately, set ratio by looking at the initializing data attribute
+                if ( $this.attr( dataAttr ).indexOf(':') > -1 ) {
+                    // set ratio
+                    tmp = $this.attr( dataAttr ).split(':');
+                    if ( tmp.length > 1 ) {
+                        // width is always first
+                        newWidth  = parseInt( tmp[0] );
+                        // account for an offset
+                        if ( tmp[1].indexOf('+') > -1 ) {
+                            // additive offset
+                            tmp2 = tmp[1].split('+');
+                            newHeight = parseInt( tmp2[0] );
+                            newOffset = tmp2[1];
+                        } else if (tmp[1].indexOf('-') > -1 ) {
+                            // subtractive offset
+                            tmp2 = tmp[1].split('-');
+                            newHeight = parseInt( tmp2[0] );
+                            newOffset = '-'+ tmp2[1];
+                        } else {
+                            // no offset, simply add height
+                            newHeight = parseInt( tmp[1] );
+                        };
+                    };
+                };
 
 				// attach to node, so we can use it later
 				// Note: DO NOT overright any existing data-attributes, these should always take precedence
