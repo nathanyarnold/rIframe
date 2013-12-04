@@ -1,5 +1,7 @@
-iFrameAutoSize
+rIframe
 ==============
+
+A jQuery plugin used to correctly size iframes in a "responsive design" layout.
 
 Iframes can be difficult to display in a responsive design layout, as the height and width are typically set as node height/width attributes or via CSS. While it's easy to override the width of the iframe by setting it to 100% (or whatever), the height is another matter. 
 
