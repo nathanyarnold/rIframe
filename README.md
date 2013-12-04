@@ -15,3 +15,15 @@ Four public methods are provided:
     remove() - will remove DOM elements from the plugin
     resize() - will run the plugin on all DOM elements currently saved in the plugin
     setSelector() - will change which selector is used to gather DOM elements when add() is called onDOMReady
+
+
+To do:
+
+Add a "setRatio()" method, that will allow you to manually set the ratio of an element instead of scraping it from the DOM. 
+
+Allow ratios to include an offset. For example 
+
+    "16:9+80"  - 16 wide by 9 tall, plus 80px
+    "16:9+20%" - 16 wide by 9 tall, plus an additional 20% of the new height
+    "16:9-80"  - 16 wide by 9 tall, minus 80px
+    "16:9-20%" - 16 wide by 9 tall, minus 20% of the new height
