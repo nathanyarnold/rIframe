@@ -23,16 +23,24 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="iframeSizer.js"></script>
 
-
 	<script>
-		// insert new node now!
+		// set selector to all iframes
+		$().iFrameAutoSize('setSelector', 'iframe');
+
+		// insert new node!!
+		var $iframe = $('<iframe />');
 		window.setTimeout( function() {
-			var $iframe = $('<iframe />');
-				$iframe.attr('src', 'frame.html');
-				$iframe.attr('data-iframe-autosize', '2:1');
-				$iframe.appendTo( $('div.one') );
-				$iframe.iFrameAutoSize('add');
-		}, 3000);
+			$iframe.attr('src', 'frame.html');
+			$iframe.attr('data-iframe-autosize', '2:1');
+			$iframe.appendTo( $('div.one') );
+			$iframe.iFrameAutoSize('add');
+		}, 2000);
+
+		/* remove all nodes!!
+		window.setTimeout( function() {
+			$('iframe').iFrameAutoSize('remove');
+		}, 4000);
+		*/
 		
 	</script>
 </body>
