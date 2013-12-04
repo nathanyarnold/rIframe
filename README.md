@@ -23,9 +23,3 @@ Add <strong>pause()</strong> and <strong>unpause()</strong> methods, to let you 
 
 Find some way to specifically prevent an iframe from being added to the plugin. Maybe the attribute <em> [data-rIframe-exclude]</em> ??
 
-Allow ratios to include an offset. For example 
-
-    "16:9+80"  - 16 wide by 9 tall, plus 80px
-    "16:9+20%" - 16 wide by 9 tall, plus an additional 20% of the new height
-    "16:9-80"  - 16 wide by 9 tall, minus 80px
-    "16:9-20%" - 16 wide by 9 tall, minus 20% of the new height

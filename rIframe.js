@@ -11,6 +11,10 @@
 		isBound = false,	// no need to bind eventListeners more than once. Keep track of this here. 
 
 		methods = {
+
+
+			// ADD/REMOVE METHODS
+
 			// call this to add new DOM-nodes to the plugin
 			// it's called automatically on DOM-ready as well, using the default selector
 			add: function() {
@@ -65,19 +69,38 @@
 					selector = newSelector;
 			},
 
-			_setRatio: function( $this ) {
+
+
+			// SET/GET RATIO METHODS
+
+			_setRatio: function( $this ) { // format: '16:9' or '16:9+20' or '16:9+20%'
 				//console.log('  $().'+ pluginName +'.methods._setRatio()');
 
 				// declare vars
-				var newHeight=0; newWidth=0;
+				var newHeight=0; newWidth=0, newOffset=0, tmp=[], tmp2=[];
 
 				// set original ratio, by data-attribute
-				if ( $this.attr( dataAttr ).indexOf(':') > 0 ) {
+				if ( $this.attr( dataAttr ).indexOf(':') > -1 ) {
 					// set ratio
-					var tmp = $this.attr( dataAttr ).split(':');
-					if ( tmp.length==2 && parseInt(tmp[0])!==0 && parseInt(tmp[1])!==0 ) {
-						newWidth  = parseInt(tmp[0]);
-						newHeight = parseInt(tmp[1]);
+					tmp = $this.attr( dataAttr ).split(':');
+					if ( tmp.length > 1 ) {
+						// width is always first
+						newWidth  = parseInt( tmp[0] );
+						// account for an offset
+						if ( tmp[1].indexOf('+') > -1 ) {
+							// additive offset
+							tmp2 = tmp[1].split('+');
+							newHeight = parseInt( tmp2[0] );
+							newOffset = tmp2[1];
+						} else if (tmp[1].indexOf('-') > -1 ) {
+							// subtractive offset
+							tmp2 = tmp[1].split('-');
+							newHeight = parseInt( tmp2[0] );
+							newOffset = '-'+ tmp2[1];
+						} else {
+							// no offset, simply add height
+							newHeight = parseInt( tmp[1] );
+						};
 					};
 				};
 
@@ -93,10 +116,43 @@
 					newHeight = parseInt( $this.css('height') );  // css
 
 				// attach to node, so we can use it later
-				$this.attr( dataAttr +'-width',  newWidth  );
-				$this.attr( dataAttr +'-height', newHeight );
-	
+				// Note: DO NOT overright any existing data-attributes, these should always take precedence
+				if ( !$this.attr( dataAttr +'-width' ) )
+					$this.attr( dataAttr +'-width',  newWidth  );
+				if ( !$this.attr( dataAttr +'-height' ) )
+					$this.attr( dataAttr +'-height', newHeight );
+				if ( newOffset && !$this.attr( dataAttr +'-offset' ) )
+					$this.attr( dataAttr +'-offset', newOffset );
+
 			},
+
+			_getHeight: function( newWidth, $this ) {
+				//console.log('  $().'+ pluginName +'.methods._getHeight('+ newWidth +')');
+				var newHeight=0, offset, offsetValue;
+
+				// get new ratio
+				var newHeight = newWidth * parseInt( $this.attr(dataAttr+'-height') ) / parseInt( $this.attr(dataAttr+'-width') );
+
+				// add/subtract offset
+				if ( $this.attr(dataAttr+'-offset') ) {
+					// figure out the offset value
+					var offset = $this.attr(dataAttr+'-offset');
+					if ( offset.indexOf('%') > -1 ) {
+						offsetValue = Math.round( newHeight * parseInt(offset) / 100 );
+					} else {
+						offsetValue = parseInt(offset);
+					};
+					// add/subtract the offset value
+					newHeight = (newHeight + offsetValue > 0) ? newHeight + offsetValue : 0;
+				};
+
+				// return;
+				return Math.round(newHeight);
+			},
+
+
+
+			// ADD/REMOVE EVENT LISTENER METHODS
 
 			_bind: function() {
 				//console.log('  $().'+ pluginName +'.methods._bind');
@@ -110,10 +166,10 @@
 				// add eventListeners
 				if (isTouch) {
 					// determine if orientation change has happened
-					$( window ).on( 'orientationchange', $.proxy( this, '_handleResize' ) );
+					$( window ).on( 'orientationchange', $.proxy( this, 'resize' ) );
 				} else {
 					// determine if window has changed size
-					$( window ).on( 'resize', $.proxy( this, '_handleResize' ) );
+					$( window ).on( 'resize', $.proxy( this, 'resize' ) );
 				};
 
 				// set a flag on this, so we don't do it more than once
@@ -124,15 +180,20 @@
 				//console.log('  $().'+ pluginName +'.methods._unbind');
 
 				// remove eventListeners
-				$( window ).off( 'orientationchange', $.proxy( this, '_handleResize' ) );
-				$( window ).off( 'resize', $.proxy( this, '_handleResize' ) );
+				$( window ).off( 'orientationchange', $.proxy( this, 'resize' ) );
+				$( window ).off( 'resize', $.proxy( this, 'resize' ) );
 
 				// set flag on this, so we can re-bind this later, if necessary
 				isBound = false;
 			},
 
-			_handleResize: function() {
-				//console.log('$().'+ pluginName +'.methods._handleResize()');
+
+
+			// RESIZE METHODS 
+
+			// call this to manually resize all DOM objects currently tracked in the plugin
+			resize: function() {
+				//console.log('$().'+ pluginName +'.methods.resize()');
 
 				// if we're already doing this, don't bother doing it again, this event happens frequently
 				if ( isResizing )
@@ -161,9 +222,8 @@
 				// get current width
 				var currWidth = parseInt( $this.outerWidth() );
 				// size height according to ratio
-				var newHeight = currWidth * parseInt( $this.attr(dataAttr+'-height') ) / parseInt( $this.attr(dataAttr+'-width') );
-				newHeight = Math.round( newHeight );
-				$this.css('height', newHeight);
+				var newHeight = methods._getHeight( currWidth, $this );
+				$this.css( 'height', newHeight );
 			},
 
 			EOF: null
