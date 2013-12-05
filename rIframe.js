@@ -1,7 +1,7 @@
 /* Widget to auto-set the height of an iframe based on it's original (or defined) ratio */
 (function( $ ){
 
-	var pluginName = 'iFrameAutoSize',
+	var pluginName = 'rIframe',
 		dataAttr   = 'data-rIframe',
 		selector   = 'iframe['+ dataAttr +']',
 
@@ -30,6 +30,8 @@
 					// add lib, so we can keep track during events
 					objs.push( $this.get(0) );
 				} );
+
+				//console.log( objs );
 
 				// add eventListener to page for future resizes
 				if ( objs.length > 0 ) {
