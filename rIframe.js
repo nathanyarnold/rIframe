@@ -18,10 +18,13 @@
 			// call this to add new DOM-nodes to the plugin
 			// it's called automatically on DOM-ready as well, using the default selector
 			add: function() {
-				//console.log('$().'+ pluginName +'.methods.add()');
+				console.log('$().'+ pluginName +'.methods.add()');
 
 				// loop through and init new objects
 				this.each( function( i ) {
+					// check to see if element is already being tracked, don't track more than once
+					if ( objs.is( this ) )
+						return;
 					// set ratios
 					var $this = $( this );
 					methods._setRatio( $this );
@@ -31,7 +34,7 @@
 					objs.push( $this.get(0) );
 				} );
 
-				//console.log( objs );
+				console.log( objs );
 
 				// add eventListener to page for future resizes
 				if ( objs.length > 0 ) {
@@ -89,7 +92,7 @@
 					newHeight = parseInt( $this.attr('height') ); // attr
 
 				// alternately, set ratio by looking at the initializing data attribute
-				if ( $this.attr( dataAttr ).indexOf(':') > -1 ) {
+				if ( $this.attr(dataAttr) && $this.attr(dataAttr).indexOf(':') > -1 ) {
 					// set ratio
 					tmp = $this.attr( dataAttr ).split(':');
 					if ( tmp.length > 1 ) {
@@ -115,12 +118,12 @@
 
 				// attach to node, so we can use it later
 				// Note: DO NOT overright any existing data-attributes, these should always take precedence
-				if ( !$this.attr( dataAttr +'-width' ) )
-					$this.attr( dataAttr +'-width',  newWidth  );
-				if ( !$this.attr( dataAttr +'-height' ) )
-					$this.attr( dataAttr +'-height', newHeight );
-				if ( newOffset && !$this.attr( dataAttr +'-offset' ) )
-					$this.attr( dataAttr +'-offset', newOffset );
+				if ( !$this.attr(dataAttr + '-width') )
+					$this.attr( dataAttr+'-width', newWidth );
+				if ( !$this.attr(dataAttr + '-height') )
+					$this.attr( dataAttr+'-height', newHeight );
+				if ( newOffset && !$this.attr(dataAttr + '-offset') )
+					$this.attr( dataAttr+'-offset', newOffset );
 
 			},
 

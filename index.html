@@ -10,42 +10,26 @@
 		div.two {padding-top:0}
 		iframe  {width:100%; max-width:100%; margin-bottom:20px; border:none}
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="rIframe.js"></script>
 </head>
 <body>
 
 	<div class="one">
-		<iframe src="frame.html" height="160" width="320" data-rIframe="2:1-400" data-rIframe-width="16" data-rIframe-height="9" data-rIframe-offset="0"></iframe>
-		<iframe src="frame.html" height="160" width="320" data-rIframe="2:1+100"></iframe>
+		<iframe id="iframe-0" src="frame.html" height="160" width="320" 
+			data-rIframe="2:1-400" data-rIframe-width="16" data-rIframe-height="9" data-rIframe-offset="0"></iframe>
+		<iframe id="iframe-1" src="frame.html" height="160" width="320"></iframe>
 	</div>
-	<!--
-	<div class="two">
-		<iframe src="frame.html" style="height:160px; width:320px" data-rIframe="true"></iframe>
-	</div>
-	-->
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script src="rIframe.js"></script>
 
 	<script>
-/*
-		// set selector to all iframes
-		$().iFrameAutoSize('setSelector', 'iframe');
-
-		// insert new node!!
-		var $iframe = $('<iframe />');
+		// none-registered node
 		window.setTimeout( function() {
-			$iframe.attr('src', 'frame.html');
-			$iframe.attr('data-rIframe', '2:1-100');
-			$iframe.appendTo( $('div.one') );
-			$iframe.iFrameAutoSize('add');
+			var $iframe = $('#iframe-0');
+				$iframe.rIframe('add');
+			var $iframe1 = $('#iframe-1');
+                $iframe1.rIframe('add');
 		}, 1000);
-*/
-		/* remove all nodes!!
-		window.setTimeout( function() {
-			$('iframe').iFrameAutoSize('remove');
-		}, 4000);
-		*/
-		
 	</script>
+
 </body>
 </html>
