@@ -41,5 +41,3 @@ Add **pause()** and **unpause()** methods, to let you manually stop resizing fro
 
 Add a true/false boolean argument to the **add()** and **remove()** methods to indicate you want the item to resize itself immediately upon being added to the library, or reset to the original height upon being removed. The default will be **add(true)** and **remove(false)**. 
 
-Find some way to specifically prevent an iframe from being added to the plugin. Maybe the attribute *[data-rIframe-exclude]* ??
-
