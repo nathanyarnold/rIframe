@@ -5,10 +5,10 @@
 		dataAttr   = 'data-rIframe',
 		selector   = 'iframe['+ dataAttr +']',
 
-		objs = $(),			// hold jQuery objects we want to work with
+		objs = $(), // hold jQuery objects we want to work with
 
 		isResizing = false,	// window.setTimeout object, used to throttle how often we resize during a resize event
-		isBound = false,	// no need to bind eventListeners more than once. Keep track of this here. 
+		isBound = false, // no need to bind eventListeners more than once. Keep track of this here. 
 
 		methods = {
 
@@ -86,30 +86,30 @@
 				if ( !newHeight && $this.attr('height') ) // attr
 					newHeight = parseInt( $this.attr('height') ); // attr
 
-                // alternately, set ratio by looking at the initializing data attribute
-                if ( $this.attr( dataAttr ).indexOf(':') > -1 ) {
-                    // set ratio
-                    tmp = $this.attr( dataAttr ).split(':');
-                    if ( tmp.length > 1 ) {
-                        // width is always first
-                        newWidth  = parseInt( tmp[0] );
-                        // account for an offset
-                        if ( tmp[1].indexOf('+') > -1 ) {
-                            // additive offset
-                            tmp2 = tmp[1].split('+');
-                            newHeight = parseInt( tmp2[0] );
-                            newOffset = tmp2[1];
-                        } else if (tmp[1].indexOf('-') > -1 ) {
-                            // subtractive offset
-                            tmp2 = tmp[1].split('-');
-                            newHeight = parseInt( tmp2[0] );
-                            newOffset = '-'+ tmp2[1];
-                        } else {
-                            // no offset, simply add height
-                            newHeight = parseInt( tmp[1] );
-                        };
-                    };
-                };
+				// alternately, set ratio by looking at the initializing data attribute
+				if ( $this.attr( dataAttr ).indexOf(':') > -1 ) {
+					// set ratio
+					tmp = $this.attr( dataAttr ).split(':');
+					if ( tmp.length > 1 ) {
+						// width is always first
+						newWidth  = parseInt( tmp[0] );
+						// account for an offset
+						if ( tmp[1].indexOf('+') > -1 ) {
+							// additive offset
+							tmp2 = tmp[1].split('+');
+							newHeight = parseInt( tmp2[0] );
+							newOffset = tmp2[1];
+						} else if (tmp[1].indexOf('-') > -1 ) {
+							// subtractive offset
+							tmp2 = tmp[1].split('-');
+							newHeight = parseInt( tmp2[0] );
+							newOffset = '-'+ tmp2[1];
+						} else {
+							// no offset, simply add height
+							newHeight = parseInt( tmp[1] );
+						};
+					};
+				};
 
 				// attach to node, so we can use it later
 				// Note: DO NOT overright any existing data-attributes, these should always take precedence
