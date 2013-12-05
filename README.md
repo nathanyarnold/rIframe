@@ -20,6 +20,8 @@ You can also manually add a DOM element to the plugin at any time by using the *
 
 You can remove a DOM element from the plugin by using the **remove()** method. Eg. *$('iframe.someClass').rIframe('remove')*;
 
+You can specifically set an iframe so that it can't be collected or added to the plugin by giving it the data attribute *data-rIframe-exclude* with any value.
+
 Public methods
 --------------
 

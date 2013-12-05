@@ -1,14 +1,15 @@
 /* Widget to auto-set the height of an iframe based on it's original (or defined) ratio */
 (function( $ ){
 
-	var pluginName = 'rIframe',
-		dataAttr   = 'data-rIframe',
-		selector   = 'iframe['+ dataAttr +']',
+	var pluginName  = 'rIframe',
+		dataAttr    = 'data-rIframe',
+		dataAttrExc = dataAttr + '-exclude';
+		selector    = 'iframe['+ dataAttr +']',
 
-		objs = $(), // hold jQuery objects we want to work with
+		objs = $(),         // hold jQuery objects we want to work with
 
 		isResizing = false,	// window.setTimeout object, used to throttle how often we resize during a resize event
-		isBound = false, // no need to bind eventListeners more than once. Keep track of this here. 
+		isBound = false,    // no need to bind eventListeners more than once. Keep track of this here. 
 
 		methods = {
 
@@ -18,15 +19,18 @@
 			// call this to add new DOM-nodes to the plugin
 			// it's called automatically on DOM-ready as well, using the default selector
 			add: function() {
-				console.log('$().'+ pluginName +'.methods.add()');
+				//console.log('$().'+ pluginName +'.methods.add()');
 
 				// loop through and init new objects
 				this.each( function( i ) {
+					var $this = $( this );
 					// check to see if element is already being tracked, don't track more than once
 					if ( objs.is( this ) )
 						return;
+					// never add nodes with the 'dataAttrExc' data-attribute set
+					if ( $this.is( '['+ dataAttrExc +']' ) )
+						return;
 					// set ratios
-					var $this = $( this );
 					methods._setRatio( $this );
 					// resize it now
 					methods._resizeItem( $this );
@@ -34,7 +38,7 @@
 					objs.push( $this.get(0) );
 				} );
 
-				console.log( objs );
+				//console.log( objs );
 
 				// add eventListener to page for future resizes
 				if ( objs.length > 0 ) {
