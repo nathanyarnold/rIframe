@@ -14,7 +14,7 @@ Alternately, you can set the ratio for each iframe via the *data-rIframe* attrib
 
 Alternately, you can set values for each ratio dimension via their own attribute. Eg *data-rIframe-width="16"* to set the width, and *data-rIframe-height="19"* to set the height.
 
-You can add an offset to the ratio (eg. 16:9 plus 50px) either by adding the offset to the *data-rIframe* attribute, or by placing it in a *data-rIframe-offset* attribute. Eg. *data-rIframe="16:9+50* and *data-rIframe-offset="50"*. The amount off offset can either be a pixel amount (eg. "50") or a % amount (eg. "20%"). You can subtract an offset by using the - sign. Eg. *data-rIframe="16:9-50)* or *data-rIframe-offset="-50"*
+You can add an offset to the ratio (eg. 16:9 plus 50px) either by adding the offset to the *data-rIframe* attribute (eg. *data-rIframe="16:9+50"*), or by placing it in a *data-rIframe-offset* attribute (eg. *data-rIframe-offset="50"*). The amount of offset can either be a pixel amount (eg. "50") or a % amount (eg. "20%"). You can subtract an offset by using the - sign (eg. *data-rIframe="16:9-50"* or *data-rIframe-offset="-50"*)
 
 You can also manually add a DOM element to the plugin at any time by using the **add()** method. Eg. *$('iframe.someClass').rIframe('add')*;
 
