@@ -33,7 +33,7 @@
 					// set ratios
 					methods._setRatio( $this );
 					// resize it now
-					methods._resizeItem( $this );
+					methods._resizeNode( $this );
 					// add lib, so we can keep track during events
 					objs.push( $this.get(0) );
 				} );
@@ -216,12 +216,12 @@
 				// resize each element
 				objs.each( function(i) {
 					var $this = $( this );
-					methods._resizeItem( $this );
+					methods._resizeNode( $this );
 				});
 			},
 
-			_resizeItem: function( $this ) {
-				//console.log('  $().'+ pluginName +'.methods._resizeItem()');
+			_resizeNode: function( $this ) {
+				//console.log('  $().'+ pluginName +'.methods._resizeNode()');
 				if ( !$this ) return;
 
 				// get current width
