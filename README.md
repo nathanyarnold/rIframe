@@ -41,3 +41,4 @@ Add **pause()** and **unpause()** methods, to let you manually stop resizing fro
 
 Add a true/false boolean argument to the **add()** and **remove()** methods to indicate you want the item to resize itself immediately upon being added to the library, or reset to the original height upon being removed. The default will be **add(true)** and **remove(false)**. 
 
+Add a way to pass in another exclusion selector -- so that people can explicitly exclude certain iframes from getting included.
