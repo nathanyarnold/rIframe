@@ -10,17 +10,35 @@ Instructions
 
 At it's easiest, simply add the plugin to your page and the attribute *data-rIframe="true"* to any iframes you would like to be responsive. The plugin will run onDOMReady, look for any iframes with the *data-rIframe* attribute, and then do it's thing. The plugin will calculate the correct width:height ratio of each iframe by looking at the original height and width attributes of that iframe. 
 
+    <iframe src="src.html" height="225" width="400" data-rIframe="true"></iframe>
+
 Alternately, you can set the ratio for each iframe via the *data-rIframe* attribute itself, by specifying the ratio instead of the value "true" (eg. *data-rIframe="16:9"*). 
+
+    <iframe src="src.html" data-rIframe="16:9"></iframe>
 
 Alternately, you can set values for each ratio dimension via their own attribute. Eg *data-rIframe-width="16"* to set the width, and *data-rIframe-height="19"* to set the height.
 
+    <iframe src="src.html" data-rIframe="true" data-rIframe-width="16" data-rIframe-height="9"></iframe>
+
 You can add an offset to the ratio (eg. 16:9 plus 50px) either by adding the offset to the *data-rIframe* attribute (eg. *data-rIframe="16:9+50"*), or by placing it in a *data-rIframe-offset* attribute (eg. *data-rIframe-offset="50"*). The amount of offset can either be a pixel amount (eg. "50") or a % amount (eg. "20%"). You can subtract an offset by using the - sign (eg. *data-rIframe="16:9-50"* or *data-rIframe-offset="-50"*)
+
+    <iframe src="src.html" data-rIframe="16:9+50"></iframe>
+    <iframe src="src.html" data-rIframe="16:9" data-rIframe-offset="50"></iframe>
 
 You can also manually add a DOM element to the plugin at any time by using the **add()** method. Eg. *$('iframe.someClass').rIframe('add')*;
 
+    var $iframe = $('<iframe />);
+    $iframe.appendTo( $parentNode );
+    $iframe.rIframe('add');
+
 You can remove a DOM element from the plugin by using the **remove()** method. Eg. *$('iframe.someClass').rIframe('remove')*;
 
+    $iframes = $('iframe');
+    $iframes.rIframe('remove');
+
 You can specifically set an iframe so that it can't be collected or added to the plugin by giving it the data attribute *data-rIframe-exclude* with any value.
+
+    <iframe src="src.html" data-rIframe-exclude="true"></iframe>
 
 Public methods
 --------------
