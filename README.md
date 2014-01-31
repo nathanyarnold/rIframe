@@ -55,6 +55,8 @@ Public methods
 To do's
 -------
 
+Add a 'properties' argument to the 'add' method, so that you can pass in all the properties you want to set (ratio, height, width, offset, etc).
+
 Add **pause()** and **unpause()** methods, to let you manually stop resizing from happening on resize events.
 
 Add a true/false boolean argument to the **add()** and **remove()** methods to indicate you want the item to resize itself immediately upon being added to the library, or reset to the original height upon being removed. The default will be **add(true)** and **remove(false)**. 
