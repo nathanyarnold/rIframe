@@ -4,7 +4,7 @@
 	var pluginName  = 'rIframe',
 		dataAttr    = 'data-rIframe',
 		dataAttrExc = dataAttr + '-exclude';
-		selector    = 'iframe['+ dataAttr +']',
+		selector    = '['+ dataAttr +']',
 
 		objs = $(),         // hold jQuery objects we want to work with
 
